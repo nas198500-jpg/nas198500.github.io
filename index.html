@@ -3,156 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google 스타일 홈</title>
-    <style>
-        :root {
-            --google-blue: #1a73e8;
-            --google-gray: #5f6368;
-            --google-light-gray: #f1f3f4;
-            --border-color: #dfe1e5;
-            --text-color: #202124;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #ffffff;
-            color: var(--text-color);
-            padding: 20px;
-        }
-
-        /* 상단 영역: 날씨 */
-        header {
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            justify-content: flex-end;
-            gap: 16px;
-        }
-
-        .weather-box {
-            display: flex;
-            gap: 12px;
-            background: var(--google-light-gray);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            color: var(--google-gray);
-        }
-
-        .weather-item span {
-            font-weight: 600;
-            color: var(--text-color);
-        }
-
-        /* 메인 중앙 영역 (검색창) */
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 600px;
-            margin-top: -50px;
-        }
-
-        .logo {
-            font-size: 72px;
-            font-weight: 500;
-            letter-spacing: -2px;
-            margin-bottom: 24px;
-            user-select: none;
-        }
-
-        /* 구글 로고 컬러 효과 */
-        .logo span:nth-child(1) { color: #4285F4; }
-        .logo span:nth-child(2) { color: #EA4335; }
-        .logo span:nth-child(3) { color: #FBBC05; }
-        .logo span:nth-child(4) { color: #4285F4; }
-        .logo span:nth-child(5) { color: #34A853; }
-        .logo span:nth-child(6) { color: #EA4335; }
-
-        .search-form {
-            width: 100%;
-            position: relative;
-        }
-
-        .search-input-wrapper {
-            display: flex;
-            align-items: center;
-            width: 100%;
-            height: 46px;
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 0 16px;
-            transition: box-shadow 0.2s ease, border-color 0.2s ease;
-            background: #fff;
-        }
-
-        .search-input-wrapper:hover,
-        .search-input-wrapper:focus-within {
-            box-shadow: 0 1px 6px rgba(32,33,36,.28);
-            border-color: rgba(223,225,229,0);
-        }
-
-        .search-icon {
-            width: 20px;
-            height: 20px;
-            fill: var(--google-gray);
-            margin-right: 12px;
-        }
-
-        .search-input {
-            flex: 1;
-            border: none;
-            outline: none;
-            font-size: 16px;
-            background: transparent;
-            color: var(--text-color);
-        }
-
-        /* 하단 영역: 명언 */
-        footer {
-            width: 100%;
-            max-width: 600px;
-            text-align: center;
-            padding-bottom: 30px;
-        }
-
-        .quote-container {
-            background-color: var(--google-light-gray);
-            border-radius: 8px;
-            padding: 16px 20px;
-            border-left: 4px solid var(--google-blue);
-        }
-
-        .quote-text {
-            font-size: 15px;
-            font-style: italic;
-            color: var(--text-color);
-            margin-bottom: 6px;
-        }
-
-        .quote-author {
-            font-size: 13px;
-            color: var(--google-gray);
-            text-align: right;
-        }
-    </style>
+    <title>서울디지털대학교 홈</title>
+    <!-- 외부 CSS 파일 연결 -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- 상단: 서울, 제주 날씨 -->
-    <header>
+    <!-- 상단 영역: 왼쪽 서울디지털대학교 로고 링크 / 오른쪽 날씨 -->
+    <header class="top-header">
+        <a href="https://www.sdu.ac.kr" target="_blank" class="sdu-logo-link">
+            <span class="sdu-logo-text">서울디지털대학교</span>
+        </a>
         <div class="weather-box">
             <div class="weather-item">서울: <span id="seoul-weather">불러오는 중...</span></div>
             <div class="weather-item">|</div>
@@ -160,11 +21,8 @@
         </div>
     </header>
 
-    <!-- 중앙: 구글 스타일 로고 및 검색창 -->
+    <!-- 중앙: 구글 검색창 (제목 로고는 삭제됨) -->
     <main>
-        <div class="logo">
-            <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
-        </div>
         <form class="search-form" action="https://www.google.com/search" method="GET">
             <div class="search-input-wrapper">
                 <svg class="search-icon" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -183,32 +41,7 @@
         </div>
     </footer>
 
-    <script>
-        // 1. 간단한 날씨 시뮬레이션 (실제 API 연동 전 UI 확인용 임시 데이터, 필요시 API 교체 가능)
-        // 서울과 제주의 날씨 정보를 가볍게 반영해 둡니다.
-        document.getElementById('seoul-weather').innerText = '맑음 18°C';
-        document.getElementById('jeju-weather').innerText = '구름 20°C';
-
-        // 2. 명언 데이터 리스트
-        const quotes = [
-            { text: "삶이 있는 한 희망은 있다.", author: "키케로" },
-            { text: "산다는 것은 서두르는 것이 아니라, 음미하는 것이다.", author: "존 레논" },
-            { text: "1퍼센트의 가능성, 그것이 나의 길이다.", author: "나폴레옹" },
-            { text: "피할 수 없으면 즐겨라.", author: "로버트 엘리엇" },
-            { text: "내일은 내일의 태양이 뜬다.", author: "마가렛 미첼" },
-            { text: "가장 큰 위험은 위험을 감수하지 않는 것이다.", author: "마크 저커버그" }
-        ];
-
-        // 페이지를 열 때마다 무작위 명언 출력
-        function displayRandomQuote() {
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            const selectedQuote = quotes[randomIndex];
-            
-            document.getElementById('quote-content').innerText = `"${selectedQuote.text}"`;
-            document.getElementById('quote-author').innerText = `- ${selectedQuote.author}`;
-        }
-
-        displayRandomQuote();
-    </script>
+    <!-- 외부 JavaScript 파일 연결 -->
+    <script src="script.js"></script>
 </body>
 </html>
